@@ -59,7 +59,7 @@ jobs:
           branch: ${{ github.event.inputs.release }}-changelog
           base: master
           title: ${{ github.event.inputs.release }} Changelog
-          body: [noissue]
+          body: '[noissue]'
           delete-branch: true
 
       - name: Setup tmate session
