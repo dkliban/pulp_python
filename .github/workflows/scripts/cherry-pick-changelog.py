@@ -7,8 +7,20 @@
 
 import argparse
 import os
+import textwrap
 
 from git import Repo
+
+
+helper = textwrap.dedent(
+    """\
+        Cherry-pick the Changelog commit for a release onto master branch.
+
+        Example:
+            $ python .ci/scripts/cherry-pick-changelog.py 3.4.0
+
+    """
+)
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, description=helper)
 
@@ -28,12 +40,16 @@ plugin_path = release_path.split("/.github")[0]
 print(f"\n\nRepo path: {plugin_path}")
 repo = Repo(plugin_path)
 
-release_commit = None
+changelog_commit = None
 # Look for a commit with the requested release version
 for commit in repo.iter_commits():
-    if f"Release {release_version_arg}\n" in commit.message:
-        release_commit = commit
-        release_version = release_version_arg
+    if f"Building changelog for {release_version_arg}\n" in commit.message:
+        changelog_commit = commit
         break
 
+if not changelog_commit:
+    raise RuntimeError("Changelog commit for {release_version_arg} was not found.")
 
+git = repo.git
+git.checkout("origin/master")
+git.cherry_pick(changelog_commit.hexsha)
