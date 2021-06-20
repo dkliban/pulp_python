@@ -53,9 +53,6 @@ jobs:
       - name: Cherry-pick changelog to master branch
         run: python .github/workflows/scripts/cherry-pick-changelog.py ${{ github.event.inputs.release }}
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
