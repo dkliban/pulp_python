@@ -53,4 +53,3 @@ if not changelog_commit:
 git = repo.git
 git.checkout("origin/master")
 git.cherry_pick(changelog_commit.hexsha)
-git.checkout(b=f"changelog")
