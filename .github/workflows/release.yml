@@ -56,10 +56,12 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
+          committer: pulpbot <pulp-infra@redhat.com>
+          author: pulpbot <pulp-infra@redhat.com>
           branch: ${{ github.event.inputs.release }}-changelog
           base: master
           title: ${{ github.event.inputs.release }} Changelog
-          body: '[noissue]'
+          body: 'Building changelog for ${{ github.event.inputs.release }}\n[noissue]'
           delete-branch: true
 
       - name: Setup tmate session
