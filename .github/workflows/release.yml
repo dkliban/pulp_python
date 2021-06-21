@@ -62,7 +62,9 @@ jobs:
           base: master
           title: 'Building changelog for ${{ github.event.inputs.release }}'
           body: '[noissue]'
-          commit-message: 'Building changelog for ${{ github.event.inputs.release }}\\n[noissue]'
+          commit-message: >
+            'Building changelog for ${{ github.event.inputs.release }}
+            [noissue]'
           delete-branch: true
 
       - name: Setup tmate session
