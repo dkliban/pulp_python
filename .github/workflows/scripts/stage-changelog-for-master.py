@@ -17,7 +17,7 @@ helper = textwrap.dedent(
         Cherry-pick the Changelog commit for a release onto master branch.
 
         Example:
-            $ python .ci/scripts/cherry-pick-changelog.py 3.4.0
+            $ python .ci/scripts/stage-changelog-for-master.py 3.4.0
 
     """
 )
