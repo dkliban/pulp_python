@@ -60,8 +60,9 @@ jobs:
           author: pulpbot <pulp-infra@redhat.com>
           branch: ${{ github.event.inputs.release }}-changelog
           base: master
-          title: ${{ github.event.inputs.release }} Changelog
-          body: 'Building changelog for ${{ github.event.inputs.release }}\n[noissue]'
+          title: 'Building changelog for ${{ github.event.inputs.release }}'
+          body: '[noissue]'
+          commit-message: 'Building changelog for ${{ github.event.inputs.release }}\n[noissue]'
           delete-branch: true
 
       - name: Setup tmate session
