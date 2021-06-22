@@ -37,13 +37,8 @@ jobs:
       - name: Install python dependencies
         run: |
           echo ::group::PYDEPS
-          pip install bump2version gitpython
+          pip install bump2version
           echo ::endgroup::
-
-      - name: Configure Git with pulpbot name and email
-        run: |
-          git config --global user.name 'pulpbot'
-          git config --global user.email 'pulp-infra@redhat.com'
 
       - name: Setting secrets
         run: python3 .github/workflows/scripts/secrets.py "$SECRETS_CONTEXT"
