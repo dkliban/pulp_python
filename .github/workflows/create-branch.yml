@@ -17,7 +17,7 @@ env:
   RELEASE_WORKFLOW: true
 
 jobs:
-  build-artifacts:
+  create-branch:
     runs-on: ubuntu-latest
 
     strategy:
@@ -52,10 +52,10 @@ jobs:
 
       - name: Verify that branch name matches current version string on master branch
         run: |
-          NAME=$(grep version setup.py | sed -rn 's/version="(.*)\.0\.dev",/\1/p')
-          if [[ NAME != ${{ github.event.inputs.name }} ]]
+          X_Y_VERSION=$(grep version setup.py | sed -rn 's/version="(.*)\.0\.dev",/\1/p')
+          if [[ X_Y_VERSION != ${{ github.event.inputs.name }} ]]
           then
-            echo "Branch name doesn't match the current version string $VERSION."
+            echo "Branch name doesn't match the current version string $X_Y_VERSION."
             exit 1
           fi
 
